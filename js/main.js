@@ -40,8 +40,6 @@ btnClear.addEventListener("click", function(event){
     localStorage.setItem("totalEnProductos", totalEnProductos);
     localStorage.setItem("costoTotal", costoTotal.toFixed(2));
 
-    
-
 }); // Botón de borrar
 
 function validarCantidad(){
@@ -121,9 +119,6 @@ btnAgregar.addEventListener("click", function(event){
     txtNumero.value="";
     txtNombre.focus();
     }
-   
-
-     
 }); // Botón de agregar
 
 txtNumero.addEventListener("blur", function(event){
@@ -135,3 +130,24 @@ txtNombre.addEventListener("blur", function(event){
     event.preventDefault();
     txtNombre.value = txtNombre.value.trim();
 }); // Otro blur
+
+window.addEventListener("load", function(event){
+
+    if (localStorage.getItem("contadorProductos")==null){
+        localStorage.setItem("contadorProductos", "0")
+    }
+    if (localStorage.getItem("totalEnProductos")==null){
+        localStorage.setItem("totalEnProductos", "0")
+    }
+    if (localStorage.getItem("costoTotal")==null){
+        localStorage.setItem("costoTotal", "0.0")
+    }
+
+    contador = parseInt(localStorage.getItem("contadorProductos"));
+    totalEnProductos = parseInt(localStorage.getItem("totalEnProductos"));
+    costoTotal = parseFloat(localStorage.getItem("costoTotal"));
+
+    contadorProductos.innerHTML=contador;
+    productosTotal.innerHTML=totalEnProductos;
+    precioTotal.innerHTML=`$ ${costoTotal}`;
+}); //windows load
